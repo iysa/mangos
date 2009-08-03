@@ -3474,6 +3474,9 @@ void Aura::HandleAuraModDisarm(bool apply, bool Real)
 
 void Aura::HandleAuraModStun(bool apply, bool Real)
 {
+    if(m_target->isInFlight())
+        return;
+
     if(!Real)
         return;
 
