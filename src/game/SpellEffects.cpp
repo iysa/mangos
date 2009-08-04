@@ -3293,6 +3293,7 @@ void Spell::EffectSummonType(uint32 i)
                 EffectSummonGuardian(i);
             break;
         case SUMMON_TYPE_WILD:
+        case SUMMON_TYPE_WILD2:
             EffectSummonWild(i);
             break;
         case SUMMON_TYPE_DEMON:
