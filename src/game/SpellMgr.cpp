@@ -395,10 +395,14 @@ bool IsPositiveEffect(uint32 spellId, uint32 effIndex)
                 case SPELL_AURA_MOD_SILENCE:
                 case SPELL_AURA_GHOST:
                 case SPELL_AURA_PERIODIC_LEECH:
-                case SPELL_AURA_MOD_PACIFY_SILENCE:
                 case SPELL_AURA_MOD_STALKED:
                 case SPELL_AURA_PERIODIC_DAMAGE_PERCENT:
                     return false;
+                case SPELL_AURA_MOD_PACIFY_SILENCE:
+                    // part of positive spell if casted at self
+                    if(spellproto->EffectImplicitTargetA[effIndex] != TARGET_SELF)
+                        return false;
+                    break;
                 case SPELL_AURA_PERIODIC_DAMAGE:            // used in positive spells also.
                     // part of negative spell if casted at self (prevent cancel)
                     if(spellproto->EffectImplicitTargetA[effIndex] == TARGET_SELF)
