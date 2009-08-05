@@ -8152,7 +8152,12 @@ uint32 Unit::SpellDamageBonus(Unit *pVictim, SpellEntry const *spellProto, uint3
     if (spellProto->SpellFamilyName == SPELLFAMILY_MAGE && spellProto->SpellIconID == 186)
     {
         if (pVictim->isFrozen())
-            DoneTotalMod *= 3.0f;
+        {
+            if (owner->HasAura(56377) && (pVictim->getLevel() > owner->getLevel()))
+                DoneTotalMod *= 4.0f;
+            else
+                DoneTotalMod *= 3.0f;
+        }
     }
 
     // ..taken
