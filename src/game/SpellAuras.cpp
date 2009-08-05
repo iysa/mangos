@@ -2058,8 +2058,16 @@ void Aura::TriggerSpell()
             }
             // Ground Slam
             case 33525:
+            {
                 target->CastSpell(target, trigger_spell_id, true);
                 return;
+            }
+            // Intense Cold
+            case 48094:
+            {
+                target->CastSpell(target, trigger_spell_id, true, NULL, this);
+                return;
+            }
         }
     }
 
