@@ -6400,7 +6400,11 @@ void Spell::EffectPlayerPull(uint32 i)
     data << float(vsin);                                    // y direction
                                                             // Horizontal speed
     data << float(damage ? damage : unitTarget->GetDistance2d(m_caster));
-    data << float(m_spellInfo->EffectMiscValue[i])/-10;     // Z Movement speed
+    // Special select for Web Grab
+    if (m_spellInfo->Id == 59420 || m_spellInfo->Id == 59421 || m_spellInfo->Id == 59106 || m_spellInfo->Id == 57731 || m_spellInfo->Id == 56640 || m_spellInfo->Id == 53406)
+        data << float(m_spellInfo->EffectMiscValue[i])/(m_spellInfo->EffectMiscValue[i]/-12);   // Z Movement speed
+    else
+        data << float(m_spellInfo->EffectMiscValue[i])/-10;      // Z Movement speed
 
     ((Player*)unitTarget)->GetSession()->SendPacket(&data);
 }
