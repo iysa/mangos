@@ -10018,6 +10018,7 @@ void Unit::SetHover(bool on)
 
 void Unit::setDeathState(DeathState s)
 {
+    m_deathState = s;
     if (s != ALIVE && s!= JUST_ALIVED)
     {
         CombatStop();
@@ -10050,7 +10051,6 @@ void Unit::setDeathState(DeathState s)
     {
         //_ApplyAllAuraMods();
     }
-    m_deathState = s;
 }
 
 /*########################################
