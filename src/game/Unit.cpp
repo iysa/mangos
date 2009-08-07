@@ -7362,7 +7362,8 @@ void Unit::setPowerType(Powers new_powertype)
             SetMaxPower(POWER_ENERGY,GetCreatePowers(POWER_ENERGY));
             if(GetTypeId() == TYPEID_PLAYER)
                 SetFlag(UNIT_FIELD_FLAGS_2, UNIT_FLAG2_REGENERATE_POWER);
-            SetPower(   POWER_ENERGY,0);
+            if(GetTypeId()==TYPEID_PLAYER && this->getClass() != CLASS_DRUID)
+                SetPower(   POWER_ENERGY,0);
             break;
         case POWER_HAPPINESS:
             SetMaxPower(POWER_HAPPINESS,GetCreatePowers(POWER_HAPPINESS));
