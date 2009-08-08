@@ -30,7 +30,6 @@
 #include "CellImpl.h"
 #include "Corpse.h"
 #include "ObjectMgr.h"
-#include "InstanceData.h"
 
 #define CLASS_LOCK MaNGOS::ClassLevelLockable<MapManager, ACE_Thread_Mutex>
 INSTANTIATE_SINGLETON_2(MapManager, CLASS_LOCK);
@@ -221,13 +220,6 @@ bool MapManager::CanPlayerEnter(uint32 mapid, Player* player)
             player->SendTransferAborted(GetId(), TRANSFER_ABORT_ZONE_IN_COMBAT);
             return(false);
         }*/
-        Map *map = MapManager::Instance().GetMap(mapid, player);//kia
-        if(!player->isGameMaster() && map && map->IsDungeon() && ((InstanceMap*)map)->GetInstanceData() && ((InstanceMap*)map)->GetInstanceData()->IsEncounterInProgress())
-        {
-            sLog.outDebug("MAP: Player '%s' can't enter instance '%s' while an encounter is in progress.", player->GetName(), map->GetMapName());
-            player->SendTransferAborted(mapid, TRANSFER_ABORT_ZONE_IN_COMBAT);
-            return false;
-        }
         return true;
     }
     else
