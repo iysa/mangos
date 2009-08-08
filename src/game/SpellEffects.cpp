@@ -2976,7 +2976,11 @@ void Spell::DoCreateItem(uint32 i, uint32 itemtype)
 
         // send info to the client
         if(pItem)
+        {
+            if(Item* ItemTarget = m_targets.getItemTarget())
+                player->DestroyItemCount(ItemTarget->GetEntry(), 1, true);
             player->SendNewItem(pItem, num_to_add, true, true);
+        }
 
         // we succeeded in creating at least one item, so a levelup is possible
         player->UpdateCraftSkill(m_spellInfo->Id);
@@ -4179,6 +4183,14 @@ void Spell::EffectEnchantItemPerm(uint32 effect_idx)
     Player* item_owner = itemTarget->GetOwner();
     if(!item_owner)
         return;
+
+    ItemPrototype const* targetProto = itemTarget->GetProto();
+    if(m_spellInfo->EffectItemType[effect_idx] && targetProto->IsVellum())
+    {
+        unitTarget = m_caster;
+        DoCreateItem(effect_idx,m_spellInfo->EffectItemType[effect_idx]);
+        return;
+    }
 
     if(item_owner!=p_caster && p_caster->GetSession()->GetSecurity() > SEC_PLAYER && sWorld.getConfig(CONFIG_GM_LOG_TRADE) )
     {
