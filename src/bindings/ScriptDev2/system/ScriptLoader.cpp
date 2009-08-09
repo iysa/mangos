@@ -5,6 +5,7 @@
 #include "precompiled.h"
 
 //custom
+extern void AddSC_teleguy();
 
 //examples
 extern void AddSC_example_creature();
@@ -356,6 +357,7 @@ extern void AddSC_zangarmarsh();
 void AddScripts()
 {
     //custom
+	AddSC_teleguy();
 
     //examples
     AddSC_example_creature();
