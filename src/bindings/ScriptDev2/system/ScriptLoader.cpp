@@ -333,6 +333,7 @@ extern void AddSC_instance_arcatraz();
 extern void AddSC_boss_high_botanist_freywinn();            //TK, botanica
 extern void AddSC_boss_laj();
 extern void AddSC_boss_warp_splinter();
+extern void AddSC_boss_alar();
 extern void AddSC_boss_kaelthas();                          //TK, the_eye
 extern void AddSC_boss_void_reaver();
 extern void AddSC_boss_high_astromancer_solarian();
@@ -685,6 +686,7 @@ void AddScripts()
     AddSC_boss_high_botanist_freywinn();                    //TK, botanica
     AddSC_boss_laj();
     AddSC_boss_warp_splinter();
+    AddSC_boss_alar();
     AddSC_boss_kaelthas();                                  //TK, the_eye
     AddSC_boss_void_reaver();
     AddSC_boss_high_astromancer_solarian();
