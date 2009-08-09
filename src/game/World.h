@@ -501,6 +501,12 @@ class World
         static float GetVisibleUnitGreyDistance()           { return m_VisibleUnitGreyDistance;       }
         static float GetVisibleObjectGreyDistance()         { return m_VisibleObjectGreyDistance;     }
 
+        //movement anticheat
+        static bool GetEnableMvAnticheat()     {return m_EnableMvAnticheat;}
+        static uint32 GetTeleportToPlaneAlarms()  {return m_TeleportToPlaneAlarms;}
+        static uint32 GetMistimingDelta()  {return m_MistimingDelta;}
+        static uint32 GetMistimingAlarms() {return m_MistimingAlarms;}
+        //<<< end movement anticheat
         void ProcessCliCommands();
         void QueueCliCommand( CliCommandHolder::Print* zprintf, char const* input ) { cliCmdQueue.add(new CliCommandHolder(input, zprintf)); }
 
@@ -568,7 +574,11 @@ class World
         static float m_MaxVisibleDistanceInFlight;
         static float m_VisibleUnitGreyDistance;
         static float m_VisibleObjectGreyDistance;
-
+        //movement anticheat enable flag
+        static bool m_EnableMvAnticheat;
+        static uint32 m_TeleportToPlaneAlarms;
+        static uint32 m_MistimingDelta;
+        static uint32 m_MistimingAlarms;
         // CLI command holder to be thread safe
         ACE_Based::LockedQueue<CliCommandHolder*,ACE_Thread_Mutex> cliCmdQueue;
         SqlResultQueue *m_resultQueue;
