@@ -8503,16 +8503,40 @@ uint32 Unit::SpellDamageBonus(Unit *pVictim, SpellEntry const *spellProto, uint3
     }
 
     // Custom scripted damage
-    // Ice Lance
-    if (spellProto->SpellFamilyName == SPELLFAMILY_MAGE && spellProto->SpellIconID == 186)
+    switch(spellProto->SpellFamilyName)
     {
-        if (pVictim->isFrozen())
+        case SPELLFAMILY_MAGE:
         {
-            if (owner->HasAura(56377) && (pVictim->getLevel() > owner->getLevel()))
-                DoneTotalMod *= 4.0f;
-            else
-                DoneTotalMod *= 3.0f;
+            // Ice Lance
+            if (spellProto->SpellIconID == 186)
+            {
+                if (pVictim->isFrozen())
+                {
+                    if (owner->HasAura(56377) && (pVictim->getLevel() > owner->getLevel()))
+                        DoneTotalMod *= 4.0f;
+                    else
+                        DoneTotalMod *= 3.0f;
+                }
+            }
+            // Torment the weak affected (Arcane Barrage, Arcane Blast, Frostfire Bolt, Arcane Missiles, Fireball)
+            if ((spellProto->SpellFamilyFlags & UI64LIT(0x0000900020200021)) && 
+                (pVictim->HasAuraType(SPELL_AURA_MOD_DECREASE_SPEED) || pVictim->HasAuraType(SPELL_AURA_MELEE_SLOW)))
+            {
+                //Search for Torment the weak dummy aura
+                Unit::AuraList const& ttw = GetAurasByType(SPELL_AURA_DUMMY);
+                for(Unit::AuraList::const_iterator i = ttw.begin(); i != ttw.end(); ++i)
+                {
+                    if ((*i)->GetSpellProto()->SpellIconID == 3263)
+                    {
+                        DoneTotalMod *= ((*i)->GetModifier()->m_amount+100.0f) / 100.0f;
+                        break;
+                    }
+                }
+            }
+            break;
         }
+        default:
+            break;
     }
 
     // Glyph of Shadow Word: Pain
