@@ -332,6 +332,8 @@ scripts/northrend/utgarde_keep/utgarde_keep/boss_skarvald_and_dalronn.cpp \
 scripts/northrend/utgarde_keep/utgarde_keep/def_utgarde_keep.h \
 scripts/northrend/utgarde_keep/utgarde_keep/instance_utgarde_keep.cpp \
 scripts/northrend/utgarde_keep/utgarde_keep/utgarde_keep.cpp \
+scripts/northrend/vault_of_archavon/boss_emalon.cpp \
+scripts/northrend/vault_of_archavon/instance_vault_of_archavon.cpp \
 scripts/outland/blades_edge_mountains.cpp \
 scripts/outland/boss_doomlord_kazzak.cpp \
 scripts/outland/boss_doomwalker.cpp \

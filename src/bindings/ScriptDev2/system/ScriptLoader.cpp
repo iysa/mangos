@@ -273,6 +273,8 @@ extern void AddSC_boss_keleseth();
 extern void AddSC_boss_skarvald_and_dalronn();
 extern void AddSC_instance_utgarde_keep();
 extern void AddSC_utgarde_keep();
+extern void AddSC_instance_vault_of_archavon();
+extern void AddSC_boss_emalon();
 
 extern void AddSC_borean_tundra();
 extern void AddSC_dragonblight();
@@ -629,6 +631,8 @@ void AddScripts()
     AddSC_boss_skarvald_and_dalronn();
     AddSC_instance_utgarde_keep();
     AddSC_utgarde_keep();
+    AddSC_instance_vault_of_archavon();
+    AddSC_boss_emalon();
 
     AddSC_borean_tundra();
     AddSC_dragonblight();
