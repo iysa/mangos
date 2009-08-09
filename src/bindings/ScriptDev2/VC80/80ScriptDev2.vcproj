@@ -1616,6 +1616,10 @@
 						>
 					</File>
 					<File
+						RelativePath="..\scripts\northrend\naxxramas\def_naxxramas.h"
+						>
+					</File>
+					<File
 						RelativePath="..\scripts\northrend\naxxramas\instance_naxxramas.cpp"
 						>
 					</File>
