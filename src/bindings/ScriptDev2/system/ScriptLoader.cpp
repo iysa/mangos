@@ -246,6 +246,7 @@ extern void AddSC_boss_anubrekhan();                        //naxxramas
 extern void AddSC_boss_four_horsemen();
 extern void AddSC_boss_faerlina();
 extern void AddSC_boss_gluth();
+extern void AddSC_boss_gothik();
 extern void AddSC_boss_kelthuzad();
 extern void AddSC_boss_loatheb();
 extern void AddSC_boss_maexxna();
@@ -599,6 +600,7 @@ void AddScripts()
     AddSC_boss_four_horsemen();
     AddSC_boss_faerlina();
     AddSC_boss_gluth();
+    AddSC_boss_gothik();
     AddSC_boss_kelthuzad();
     AddSC_boss_loatheb();
     AddSC_boss_maexxna();
