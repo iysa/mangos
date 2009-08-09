@@ -1718,6 +1718,10 @@
 					<Filter
 						Name="ulduar"
 						>
+						<File
+							RelativePath="..\scripts\northrend\ulduar\ulduar\npc_ulduar_teleporter.cpp"
+							>
+						</File>
 					</Filter>
 				</Filter>
 				<Filter
