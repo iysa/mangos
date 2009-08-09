@@ -5,6 +5,7 @@
 #include "precompiled.h"
 
 //custom
+extern void AddSC_npc_arena_honor();
 extern void AddSC_teleguy();
 
 //examples
@@ -359,6 +360,7 @@ extern void AddSC_zangarmarsh();
 void AddScripts()
 {
     //custom
+    AddSC_npc_arena_honor();
 	AddSC_teleguy();
 
     //examples
