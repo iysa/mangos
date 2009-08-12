@@ -1578,7 +1578,7 @@ class MANGOS_DLL_SPEC Unit : public WorldObject
         bool HandleHasteAuraProc(   Unit *pVictim, uint32 damage, Aura* triggredByAura, SpellEntry const *procSpell, uint32 procFlag, uint32 procEx, uint32 cooldown);
         bool HandleProcTriggerSpell(Unit *pVictim, uint32 damage, Aura* triggredByAura, SpellEntry const *procSpell, uint32 procFlag, uint32 procEx, uint32 cooldown);
         bool HandleOverrideClassScriptAuraProc(Unit *pVictim, uint32 damage, Aura* triggredByAura, SpellEntry const *procSpell, uint32 cooldown);
-        bool HandleMeandingAuraProc(Aura* triggeredByAura);
+        bool HandleMendingAuraProc(Aura* triggeredByAura);
 
         RedirectThreatEntry* GetRedirectThreatEntry(RedirectThreatMap* map, uint32 spellId);
         float AddThreatToRedirectionTargets(Unit* pVictim, float threat, SpellSchoolMask schoolMask, SpellEntry const *threatSpell);
