@@ -2269,10 +2269,10 @@ void Spell::EffectTriggerSpell(uint32 i)
         // Demonic Empowerment (Succubus)
         case 54437:
         {
-            m_caster->RemoveSpellsCausingAura(SPELL_AURA_MOD_ROOT);
-            m_caster->RemoveSpellsCausingAura(SPELL_AURA_MOD_DECREASE_SPEED);
-            m_caster->RemoveSpellsCausingAura(SPELL_AURA_MOD_STALKED);
-            m_caster->RemoveSpellsCausingAura(SPELL_AURA_MOD_STUN);
+            unitTarget->RemoveSpellsCausingAura(SPELL_AURA_MOD_ROOT);
+            unitTarget->RemoveSpellsCausingAura(SPELL_AURA_MOD_DECREASE_SPEED);
+            unitTarget->RemoveSpellsCausingAura(SPELL_AURA_MOD_STALKED);
+            unitTarget->RemoveSpellsCausingAura(SPELL_AURA_MOD_STUN);
             return;
         }
 
