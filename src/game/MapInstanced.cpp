@@ -143,7 +143,6 @@ Map* MapInstanced::CreateInstance(const uint32 mapId, Player * player)
         if(!((BattleGroundMap*)map)->GetBG())
             if(player->GetBattleGround())
                 player->GetBattleGround()->EndBattleGround(0); //to avoid the assert
-        }
     }
     else
     {
