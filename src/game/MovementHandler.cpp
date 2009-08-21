@@ -225,7 +225,6 @@ void WorldSession::HandleMovementOpcodes( WorldPacket & recv_data )
         // movement anticheat
         plMover->m_anti_JustTeleported = 1;
         // end movement anticheat
-    {
         recv_data.rpos(recv_data.wpos());                   // prevent warnings spam
         return;
     }
