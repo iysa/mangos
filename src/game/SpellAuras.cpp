@@ -4737,7 +4737,7 @@ void Aura::HandleAuraPeriodicDummy(bool apply, bool Real)
                             SendFakeAuraUpdate(62388,false);
                         else
                         {
-                           m_target->RemoveAurasDueToSpell(spell->Id);
+                            m_target->RemoveGameObject(spell->Id,true);
                             SendFakeAuraUpdate(62388,true);
                         }
                     }
