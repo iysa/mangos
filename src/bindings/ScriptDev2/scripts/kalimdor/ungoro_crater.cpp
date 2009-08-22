@@ -42,10 +42,7 @@ enum
     SAY_AME_AGGRO2          = -1000450,
     SAY_AME_AGGRO3          = -1000451,
 
-    QUEST_CHASING_AME       = 4245,
-
-    FACTION_ESCORTEE_A      = 774,
-    FACTION_ESCORTEE_H      = 775
+    QUEST_CHASING_AME       = 4245
 };
 
 struct MANGOS_DLL_DECL npc_ame01AI : public npc_escortAI
@@ -101,9 +98,9 @@ bool QuestAccept_npc_ame01(Player* pPlayer, Creature* pCreature, const Quest* pQ
             pCreature->SetStandState(UNIT_STAND_STATE_STAND);
 
             if (pPlayer->GetTeam() == ALLIANCE)
-                pCreature->setFaction(FACTION_ESCORTEE_A);
+                pCreature->setFaction(FACTION_ESCORT_A_PASSIVE);
             else if (pPlayer->GetTeam() == HORDE)
-                pCreature->setFaction(FACTION_ESCORTEE_H);
+                pCreature->setFaction(FACTION_ESCORT_H_PASSIVE);
 
             pAmeAI->Start(false, false, pPlayer->GetGUID(), pQuest);
         }
@@ -146,8 +143,7 @@ enum
 
     SPELL_REVIVE_RINGO          = 15591,
     QUEST_A_LITTLE_HELP         = 4491,
-    NPC_SPRAGGLE                = 9997,
-    FACTION_ESCORTEE            = 113
+    NPC_SPRAGGLE                = 9997
 };
 
 struct MANGOS_DLL_DECL npc_ringoAI : public FollowerAI
@@ -324,7 +320,7 @@ bool QuestAccept_npc_ringo(Player* pPlayer, Creature* pCreature, const Quest* pQ
         if (npc_ringoAI* pRingoAI = dynamic_cast<npc_ringoAI*>(pCreature->AI()))
         {
             pCreature->SetStandState(UNIT_STAND_STATE_STAND);
-            pRingoAI->StartFollow(pPlayer, FACTION_ESCORTEE, pQuest);
+            pRingoAI->StartFollow(pPlayer, FACTION_ESCORT_N_FRIEND_PASSIVE, pQuest);
         }
     }
 
