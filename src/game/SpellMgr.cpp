@@ -341,7 +341,9 @@ bool IsPositiveEffect(uint32 spellId, uint32 effIndex)
     {
         // consider dispel as always negative effect (explicit check will be performed later)
         case SPELL_EFFECT_DISPEL:
-            return false;
+            // This should be replaced by other check like "if (!(m_caster->isFriendlyTo(m_target)))"
+            if (spellproto->Id != 4987)
+                return false;
         case SPELL_EFFECT_DUMMY:
             // some explicitly required dummy effect sets
             switch(spellId)
