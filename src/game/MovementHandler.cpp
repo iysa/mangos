@@ -678,6 +678,7 @@ void WorldSession::HandleMovementOpcodes( WorldPacket & recv_data )
     } else if (plMover) {
         plMover->m_anti_AlarmCount++;
         WorldPacket data;
+        plMover->m_movementInfo.SetMovementFlags(MovementFlags(MOVEMENTFLAG_NONE));
         plMover->BuildTeleportAckMsg(&data, plMover->GetPositionX(), plMover->GetPositionY(), plMover->GetPositionZ(), plMover->GetOrientation());
         plMover->GetSession()->SendPacket(&data);
         plMover->BuildHeartBeatMsg(&data);
@@ -846,7 +847,7 @@ void WorldSession::HandleMoveKnockBackAck( WorldPacket & recv_data )
     ReadMovementInfo(recv_data, &movementInfo);
 
     //Save movement flags
-    //_player->SetUnitMovementFlags(movementInfo.flags);
+    _player->m_movementInfo.SetMovementFlags(MovementFlags(movementInfo.flags));
 
     #ifdef MOVEMENT_ANTICHEAT_DEBUG
     sLog.outBasic("%s CMSG_MOVE_KNOCK_BACK_ACK: tm:%d ftm:%d | %f,%f,%fo(%f) [%X]",GetPlayer()->GetName(),movementInfo.time,movementInfo.fallTime,movementInfo.x,movementInfo.y,movementInfo.z,movementInfo.o,movementInfo.flags);
