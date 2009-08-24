@@ -280,6 +280,7 @@ UPDATE creature_template SET ScriptName='npc_captured_sunhawk_agent' WHERE entry
 
 /* BOREAN TUNDRA */
 UPDATE creature_template SET ScriptName='npc_fizzcrank_fullthrottle' WHERE entry=25590;
+UPDATE creature_template SET ScriptName='npc_iruk' WHERE entry=26219;
 UPDATE creature_template SET ScriptName='npc_kara_thricestar' WHERE entry=26602;
 UPDATE creature_template SET ScriptName='npc_surristrasz' WHERE entry=24795;
 UPDATE creature_template SET ScriptName='npc_tiare' WHERE entry=30051;
@@ -371,7 +372,7 @@ UPDATE creature_template SET ScriptName='mob_shield_generator_channel' WHERE ent
 
 
 /* DALARAN */
-
+UPDATE creature_template SET ScriptName='npc_zidormi' WHERE entry=31848;
 
 /* DARKSHORE */
 UPDATE creature_template SET ScriptName='npc_kerlonian' WHERE entry=11218;
@@ -815,7 +816,7 @@ UPDATE creature_template SET ScriptName='npc_braug_dimspirit' WHERE entry=4489;
 UPDATE creature_template SET ScriptName='npc_kaya' WHERE entry=11856;
 
 /* STORM PEAKS */
-
+UPDATE creature_template SET ScriptName='npc_roxi_ramrocket' WHERE entry=31247;
 
 /* STORMWIND CITY */
 UPDATE creature_template SET ScriptName='npc_archmage_malin' WHERE entry=2708;
