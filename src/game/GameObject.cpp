@@ -700,7 +700,7 @@ void GameObject::SaveRespawnTime()
         objmgr.SaveGORespawnTime(m_DBTableGuid,GetInstanceId(),m_respawnTime);
 }
 
-bool GameObject::isVisibleForInState(Player const* u, bool inVisibleList) const
+bool GameObject::isVisibleForInState(Player const* u, WorldObject const* viewPoint, bool inVisibleList) const
 {
     // Not in world
     if(!IsInWorld() || !u->IsInWorld())
@@ -727,7 +727,7 @@ bool GameObject::isVisibleForInState(Player const* u, bool inVisibleList) const
     }
 
     // check distance
-    return IsWithinDistInMap(u,World::GetMaxVisibleDistanceForObject() +
+    return IsWithinDistInMap(viewPoint,World::GetMaxVisibleDistanceForObject() +
         (inVisibleList ? World::GetVisibleObjectGreyDistance() : 0.0f), false);
 }
 
