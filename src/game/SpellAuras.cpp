@@ -5303,15 +5303,15 @@ void Aura::HandleAuraModIncreaseHealth(bool apply, bool Real)
         case 34511:                                         // Valor (Bulwark of Kings, Bulwark of the Ancient Kings)
         case 44055: case 55915: case 55917:                 // Tremendous Fortitude (Battlemaster's trinkets)
         case 50322:                                         // Survival Instincts
-         case 55233:                                         // Vampiric Blood
+        case 55233:                                         // Vampiric Blood
         case 54443:                                         // Demonic Empowerment (Voidwalker)
         {
             if(Real)
             {
                 if(apply)
                 {
-                     if (GetId()==55233)
-                         m_modifier.m_amount *=  m_target->GetMaxHealth()/100;
+                    if (GetId()==55233)
+                        m_modifier.m_amount *=  m_target->GetMaxHealth()/100;
 
                     // Demonic Empowerment (Voidwalker) - special case, store percent in data
                     // recalculate to full amount at apply for proper remove
