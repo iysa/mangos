@@ -838,9 +838,6 @@ void WorldSession::HandleMoveKnockBackAck( WorldPacket & recv_data )
 {
     sLog.outDebug("CMSG_MOVE_KNOCK_BACK_ACK");
 
-    recv_data.read_skip<uint64>();                          // guid
-    recv_data.read_skip<uint32>();                          // unk
-
     MovementInfo movementInfo;
     uint32 unk1,unk2,unk3;
     recv_data >> unk1 >> unk2 >> unk3;
