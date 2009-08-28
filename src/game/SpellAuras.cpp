@@ -1365,7 +1365,8 @@ void Aura::HandleAddModifier(bool apply, bool Real)
         m_target->RemoveAurasDueToSpell(*set_itr);
         m_target->CastSpell(m_target, *set_itr, true);
     }
-    else if(m_spellProto->SpellFamilyName==SPELLFAMILY_DRUID && (m_spellmod->mask2 & UI64LIT(0x20000)))
+
+    if(m_spellProto->SpellFamilyName==SPELLFAMILY_DRUID && (m_spellmod->mask2 & UI64LIT(0x20000)))
     {
         m_target->RemoveAurasDueToSpell(66530);
 
