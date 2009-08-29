@@ -1030,6 +1030,8 @@ void SpellMgr::LoadSpellBonusess()
         DoSpellBonusess worker(sbe);
         doForHighRanks(entry,worker);
 
+        ++count;
+
     } while( result->NextRow() );
 
     delete result;
