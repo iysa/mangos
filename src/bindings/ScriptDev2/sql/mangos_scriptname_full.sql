@@ -419,6 +419,7 @@ UPDATE creature_template SET ScriptName='npc_narm_faulk' WHERE entry=6177;
 UPDATE creature_template SET ScriptName='mobs_risen_husk_spirit' WHERE entry IN (23554,23555);
 UPDATE creature_template SET ScriptName='npc_deserter_agitator' WHERE entry=23602;
 UPDATE creature_template SET ScriptName='npc_lady_jaina_proudmoore' WHERE entry=4968;
+UPDATE creature_template SET ScriptName='npc_ogron' WHERE entry=4983;
 UPDATE creature_template SET ScriptName='npc_nat_pagle' WHERE entry=12919;
 UPDATE creature_template SET ScriptName='npc_cassa_crimsonwing' WHERE entry=23704;
 UPDATE creature_template SET ScriptName='npc_restless_apparition' WHERE entry=23861;
@@ -947,7 +948,10 @@ UPDATE creature_template SET ScriptName='mob_infested_root_walker' WHERE entry=2
 UPDATE creature_template SET ScriptName='mob_netherweb_victim' WHERE entry=22355;
 UPDATE creature_template SET ScriptName='mob_rotting_forest_rager' WHERE entry=22307;
 UPDATE creature_template SET ScriptName='mob_unkor_the_ruthless' WHERE entry=18262;
+UPDATE creature_template SET ScriptName='npc_akuno' WHERE entry=22377;
 UPDATE creature_template SET ScriptName='npc_floon' WHERE entry=18588;
+UPDATE creature_template SET ScriptName='npc_mana_bomb_exp_trigger' WHERE entry=20767;
+UPDATE gameobject_template SET ScriptName='go_mana_bomb' WHERE entry=184725;
 UPDATE creature_template SET ScriptName='npc_skyguard_handler_irena' WHERE entry=23413;
 UPDATE creature_template SET ScriptName='npc_slim' WHERE entry=19679;
 

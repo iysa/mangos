@@ -456,7 +456,40 @@ INSERT INTO script_texts (entry,content_default,sound,type,language,emote,commen
 (-1000448,'A-Me home! A-Me good! Good A-Me. Home. Home. Home.',0,0,0,0,'ame01 SAY_AME_END'),
 (-1000449,'$c, no hurt A-Me. A-Me good.',0,0,0,0,'ame01 SAY_AME_AGGRO1'),
 (-1000450,'Danger. Danger! $c try hurt A-Me.',0,0,0,0,'ame01 SAY_AME_AGGRO2'),
-(-1000451,'Bad, $c. $c, bad!',0,0,0,0,'ame01 SAY_AME_AGGRO3');
+(-1000451,'Bad, $c. $c, bad!',0,0,0,0,'ame01 SAY_AME_AGGRO3'),
+
+(-1000452,'I noticed some fire on that island over there. A human, too. Let\'s go check it out, $n.',0,0,1,0,'ogron SAY_OGR_START'),
+(-1000453,'That\'s Reethe alright. Let\'s go see what he has to say, yeah?',0,0,1,1,'ogron SAY_OGR_SPOT'),
+(-1000454,'W-what do you want? Just leave me alone...',0,0,0,6,'ogron SAY_OGR_RET_WHAT'),
+(-1000455,'I swear. I didn\'t steal anything from you! Here, take some of my supplies, just go away!',0,0,0,27,'ogron SAY_OGR_RET_SWEAR'),
+(-1000456,'Just tell us what you know about the Shady Rest Inn, and I won\'t bash your skull in.',0,0,1,0,'ogron SAY_OGR_REPLY_RET'),
+(-1000457,'I... Well, I may of taken a little thing or two from the inn... but what would an ogre care about that?',0,0,0,6,'ogron SAY_OGR_RET_TAKEN'),
+(-1000458,'Look here, if you don\'t tell me about the fire--',0,0,1,0,'ogron SAY_OGR_TELL_FIRE'),
+(-1000459,'Not one step closer, ogre!',0,0,0,27,'ogron SAY_OGR_RET_NOCLOSER'),
+(-1000460,'And I don\'t know anything about this fire of yours...',0,0,0,0,'ogron SAY_OGR_RET_NOFIRE'),
+(-1000461,'What was that? Did you hear something?',0,0,0,0,'ogron SAY_OGR_RET_HEAR'),
+(-1000462,'Paval Reethe! Found you at last. And consorting with ogres now? No fear, even deserters and traitors are afforded some mercy.',0,0,0,0,'ogron SAY_OGR_CAL_FOUND'),
+(-1000463,'Private, show Lieutenant Reethe some mercy.',0,0,0,29,'ogron SAY_OGR_CAL_MERCY'),
+(-1000464,'Gladly, sir.',0,0,0,0,'ogron SAY_OGR_HALL_GLAD'),
+(-1000465,'%s staggers backwards as the arrow lodges itself deeply in his chest.',0,2,0,0,'ogron EMOTE_OGR_RET_ARROW'),
+(-1000466,'Ugh... Hallan, didn\'t think you had it in you...',0,0,0,34,'ogron SAY_OGR_RET_ARROW'),
+(-1000467,'Now, let\'s clean up the rest of the trash, men!',0,0,0,0,'ogron SAY_OGR_CAL_CLEANUP'),
+(-1000468,'Damn it! You\'d better not die on me, human!',0,0,1,0,'ogron SAY_OGR_NODIE'),
+(-1000469,'Still with us, Reethe?',0,0,1,0,'ogron SAY_OGR_SURVIVE'),
+(-1000470,'Must be your lucky day. Alright, I\'ll talk. Just leave me alone. Look, you\'re not going to believe me, but it wa... oh, Light, looks like the girl could shoot...',0,0,0,0,'ogron SAY_OGR_RET_LUCKY'),
+(-1000471,'By the way, thanks for watching my back.',0,0,1,0,'ogron SAY_OGR_THANKS'),
+
+(-1000472,'1...',0,3,0,0,'mana bomb SAY_COUNT_1'),
+(-1000473,'2...',0,3,0,0,'mana bomb SAY_COUNT_2'),
+(-1000474,'3...',0,3,0,0,'mana bomb SAY_COUNT_3'),
+(-1000475,'4...',0,3,0,0,'mana bomb SAY_COUNT_4'),
+(-1000476,'5...',0,3,0,0,'mana bomb SAY_COUNT_5'),
+
+(-1000477,'Let us leave this place. I\'ve had enough of these madmen!',0,0,0,0,'akuno SAY_AKU_START'),
+(-1000478,'You\'ll go nowhere, fool!',0,0,0,0,'akuno SAY_AKU_AMBUSH_A'),
+(-1000479,'Beware! More cultists come!',0,0,0,0,'akuno SAY_AKU_AMBUSH_B'),
+(-1000480,'You will not escape us so easily!',0,0,0,0,'akuno SAY_AKU_AMBUSH_B_REPLY'),
+(-1000481,'I can find my way from here. My friend Mekeda will reward you for your kind actions.',0,0,0,0,'akuno SAY_AKU_COMPLETE');
 
 -- -1 033 000 SHADOWFANG KEEP
 INSERT INTO script_texts (entry,content_default,sound,type,language,emote,comment) VALUES
@@ -2516,6 +2549,32 @@ INSERT INTO script_waypoint VALUES
 (4962, 5, -3738.633789, -830.997498, 11.057384, 0, ''),
 (4962, 6, -3690.224121, -862.261597,  9.960449, 0, '');
 
+DELETE FROM script_waypoint WHERE entry=4983;
+INSERT INTO script_waypoint VALUES
+(4983, 0, -3322.649414, -3124.631836, 33.842, 0, ''),
+(4983, 1, -3326.336670, -3126.833496, 34.426, 0, ''),
+(4983, 2, -3336.984131, -3129.611816, 30.692, 0, ''),
+(4983, 3, -3342.598389, -3132.146729, 30.422, 0, ''),
+(4983, 4, -3355.827881, -3140.947998, 29.534, 0, ''),
+(4983, 5, -3365.828125, -3144.284180, 35.176, 0, ''),
+(4983, 6, -3368.904541, -3147.265381, 36.091, 0, ''),
+(4983, 7, -3369.355957, -3169.828857, 36.325, 0, ''),
+(4983, 8, -3371.443359, -3183.905029, 33.454, 0, ''),
+(4983, 9, -3373.824951, -3190.861084, 34.717, 5000, 'SAY_OGR_SPOT'),
+(4983, 10, -3368.529785, -3198.210205, 34.926, 0, 'SAY_OGR_RET_WHAT'),
+(4983, 11, -3366.265625, -3210.867676, 33.733, 5000, 'pause'),
+(4983, 12, -3368.529785, -3198.210205, 34.926, 0, ''),
+(4983, 13, -3373.824951, -3190.861084, 34.717, 0, ''),
+(4983, 14, -3371.443359, -3183.905029, 33.454, 0, ''),
+(4983, 15, -3369.355957, -3169.828857, 36.325, 0, ''),
+(4983, 16, -3368.904541, -3147.265381, 36.091, 0, ''),
+(4983, 17, -3365.828125, -3144.284180, 35.176, 0, ''),
+(4983, 18, -3355.827881, -3140.947998, 29.534, 0, ''),
+(4983, 19, -3342.598389, -3132.146729, 30.422, 0, ''),
+(4983, 20, -3336.984131, -3129.611816, 30.692, 0, ''),
+(4983, 21, -3326.336670, -3126.833496, 34.426, 0, ''),
+(4983, 22, -3322.649414, -3124.631836, 33.842, 0, '');
+
 DELETE FROM script_waypoint WHERE entry=6182;
 INSERT INTO script_waypoint VALUES
 (6182, 0, -11480.684570, 1545.091187, 49.898571, 0, ''),
@@ -3407,6 +3466,28 @@ INSERT INTO script_waypoint VALUES
 (21027, 48, -2841.654541, 1285.809204, 7.933223, 0, ''),
 (21027, 49, -2841.754883, 1289.832520, 6.990304, 0, ''),
 (21027, 50, -2871.398438, 1302.348145, 6.807335, 7500, 'SAY_WIL_END');
+
+DELETE FROM script_waypoint WHERE entry=22377;
+INSERT INTO script_waypoint VALUES
+(22377, 0, -2770.457520, 5418.410645, -34.538, 0, ''),
+(22377, 1, -2778.180420, 5416.253906, -34.538, 0, ''),
+(22377, 2, -2816.960449, 5414.944336, -34.529, 0, ''),
+(22377, 3, -2827.533203, 5414.737305, -28.265, 0, ''),
+(22377, 4, -2841.610596, 5413.021973, -28.261, 0, ''),
+(22377, 5, -2863.605957, 5411.964355, -28.262, 1000, 'SAY_AKU_AMBUSH_A'),
+(22377, 6, -2874.559570, 5413.799316, -28.260, 0, ''),
+(22377, 7, -2878.775879, 5413.812012, -28.261, 0, ''),
+(22377, 8, -2892.586914, 5413.478516, -18.784, 0, ''),
+(22377, 9, -2896.040527, 5413.137207, -18.589, 0, ''),
+(22377, 10, -2896.318848, 5409.431641, -18.450, 0, ''),
+(22377, 11, -2895.997803, 5396.909668, -8.855, 0, ''),
+(22377, 12, -2895.734131, 5386.623535, -9.260, 0, ''),
+(22377, 13, -2895.318359, 5367.613281, -9.456, 0, ''),
+(22377, 14, -2890.306641, 5353.883301, -11.280, 1000, 'SAY_AKU_AMBUSH_B'),
+(22377, 15, -2880.419189, 5334.625977, -10.629, 0, ''),
+(22377, 16, -2866.394043, 5314.253906, -9.678, 0, ''),
+(22377, 17, -2864.753174, 5277.734375, -11.087, 0, ''),
+(22377, 18, -2856.330322, 5255.902344, -11.496, 5000, 'SAY_AKU_COMPLETE');
 
 DELETE FROM script_waypoint WHERE entry=22916;
 INSERT INTO script_waypoint VALUES
