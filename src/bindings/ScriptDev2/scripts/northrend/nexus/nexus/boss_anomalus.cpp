@@ -59,18 +59,18 @@ float RiftLocation[6][3]=
 
 struct MANGOS_DLL_DECL boss_anomalusAI : public ScriptedAI
 {
-    boss_anomalusAI(Creature *c) : ScriptedAI(c)
+    boss_anomalusAI(Creature* pCreature) : ScriptedAI(pCreature)
     {
-        pInstance = ((ScriptedInstance*)c->GetInstanceData());
+        pInstance = ((ScriptedInstance*)pCreature->GetInstanceData());
+        HeroicMode = pCreature->GetMap()->IsHeroic();
         Reset();
-        HeroicMode = c->GetMap()->IsHeroic();
     }
 
     ScriptedInstance* pInstance;
     bool HeroicMode;
 
     uint8 Phase;
-    uint32 SPELL_SPARK_Timer;                    
+    uint32 SPELL_SPARK_Timer;
     uint32 SPELL_CREATE_RIFT_Timer;
     uint64 ChaoticRiftGUID;
 
@@ -85,9 +85,12 @@ struct MANGOS_DLL_DECL boss_anomalusAI : public ScriptedAI
             pInstance->SetData(DATA_ANOMALUS_EVENT, NOT_STARTED);
     }
 
-    void Aggro(Unit* who) 
+    void Aggro(Unit* pWho)
     {
         DoScriptText(SAY_AGGRO, m_creature);
+
+        if(pInstance)
+            pInstance->SetData(DATA_ANOMALUS_EVENT, IN_PROGRESS);
     }
 
     void KilledUnit(Unit* pVictim)
@@ -96,14 +99,15 @@ struct MANGOS_DLL_DECL boss_anomalusAI : public ScriptedAI
             DoScriptText(SAY_KILL, m_creature);
     }
 
-    void JustDied(Unit* killer)  
+    void JustDied(Unit* pKiller)  
     {
         DoScriptText(SAY_DEATH, m_creature);
+
         if (pInstance)
             pInstance->SetData(DATA_ANOMALUS_EVENT, DONE);
     }
 
-    void UpdateAI(const uint32 diff) 
+    void UpdateAI(const uint32 diff)
     {
         if (!m_creature->SelectHostilTarget() || !m_creature->getVictim())
             return;
@@ -195,15 +199,15 @@ struct MANGOS_DLL_DECL boss_anomalusAI : public ScriptedAI
             SPELL_CREATE_RIFT_Timer = 25000;
         }else SPELL_CREATE_RIFT_Timer -=diff;
 
-        DoMeleeAttackIfReady();    
+        DoMeleeAttackIfReady();
     }
 };
 
 struct MANGOS_DLL_DECL mob_chaotic_riftAI : public Scripted_NoMovementAI
 {
-    mob_chaotic_riftAI(Creature *c) : Scripted_NoMovementAI(c)
+    mob_chaotic_riftAI(Creature* pCreature) : Scripted_NoMovementAI(pCreature)
     {
-        pInstance = ((ScriptedInstance*)c->GetInstanceData());
+        pInstance = ((ScriptedInstance*)pCreature->GetInstanceData());
         Reset();
     }
 
@@ -222,7 +226,7 @@ struct MANGOS_DLL_DECL mob_chaotic_riftAI : public Scripted_NoMovementAI
         DoCast(m_creature, SPELL_ARCANEFORM, false);
     }
 
-    void UpdateAI(const uint32 diff) 
+    void UpdateAI(const uint32 diff)
     {
         if (!m_creature->SelectHostilTarget() || !m_creature->getVictim())
             return;
@@ -259,14 +263,14 @@ struct MANGOS_DLL_DECL mob_chaotic_riftAI : public Scripted_NoMovementAI
     }
 };
 
-CreatureAI* GetAI_mob_chaotic_rift(Creature *_Creature)
+CreatureAI* GetAI_mob_chaotic_rift(Creature* pCreature)
 {
-    return new mob_chaotic_riftAI (_Creature);
+    return new mob_chaotic_riftAI(pCreature);
 }
 
-CreatureAI* GetAI_boss_anomalus(Creature *_Creature)
+CreatureAI* GetAI_boss_anomalus(Creature* pCreature)
 {
-    return new boss_anomalusAI (_Creature);
+    return new boss_anomalusAI (pCreature);
 }
 
 void AddSC_boss_anomalus()

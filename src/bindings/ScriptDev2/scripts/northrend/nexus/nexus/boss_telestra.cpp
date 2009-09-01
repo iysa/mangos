@@ -59,11 +59,11 @@ enum
 
 struct MANGOS_DLL_DECL boss_telestraAI : public ScriptedAI
 {
-    boss_telestraAI(Creature* c) : ScriptedAI(c) 
+    boss_telestraAI(Creature* pCreature) : ScriptedAI(pCreature)
     {
-        pInstance = ((ScriptedInstance*)c->GetInstanceData());
+        pInstance = ((ScriptedInstance*)pCreature->GetInstanceData());
+        HeroicMode = pCreature->GetMap()->IsHeroic();
         Reset();
-        HeroicMode = c->GetMap()->IsHeroic();
     }
 
     ScriptedInstance* pInstance;
@@ -81,16 +81,16 @@ struct MANGOS_DLL_DECL boss_telestraAI : public ScriptedAI
 
     uint8 Phase;
 
-    uint32 SPELL_ICE_NOVA_Timer;                    
-    uint32 SPELL_FIREBOMB_Timer;                    
+    uint32 SPELL_ICE_NOVA_Timer;
+    uint32 SPELL_FIREBOMB_Timer;
     uint32 SPELL_GRAVITY_WELL_Timer;
 
     void Reset()
     {
         Phase = 0;
         //These times are probably wrong
-        SPELL_ICE_NOVA_Timer =  7000;                  
-        SPELL_FIREBOMB_Timer =  0;                
+        SPELL_ICE_NOVA_Timer =  7000;
+        SPELL_FIREBOMB_Timer =  0;
         SPELL_GRAVITY_WELL_Timer = 15000;
 
         FireMagusGUID = 0;
@@ -106,9 +106,25 @@ struct MANGOS_DLL_DECL boss_telestraAI : public ScriptedAI
             pInstance->SetData(DATA_MAGUS_TELESTRA_EVENT, NOT_STARTED);
     }
 
-    void Aggro(Unit* who) 
+    void Aggro(Unit* pWho) 
     {
         DoScriptText(SAY_AGGRO, m_creature);
+
+        if(pInstance)
+            pInstance->SetData(DATA_MAGUS_TELESTRA_EVENT, IN_PROGRESS);
+    }
+
+    void JustDied(Unit* pKiller)
+    {
+        DoScriptText(SAY_DEATH, m_creature);
+
+        if (pInstance)
+            pInstance->SetData(DATA_MAGUS_TELESTRA_EVENT, DONE);
+    }
+
+    void KilledUnit(Unit* pVictim)
+    {
+        DoScriptText(SAY_KILL, m_creature);
     }
 
     uint64 SplitPersonality(uint32 entry)
@@ -217,8 +233,8 @@ struct MANGOS_DLL_DECL boss_telestraAI : public ScriptedAI
             return;
         }
 
-        if (HeroicMode && (Phase == 2) && (m_creature->GetHealth() <= (m_creature->GetMaxHealth() * 0.1))) 
-        {     
+        if (HeroicMode && (Phase == 2) && (m_creature->GetHealth() <= (m_creature->GetMaxHealth() * 0.1)))
+        {
             Phase = 3;
             m_creature->CastStop();
             m_creature->SetVisibility(VISIBILITY_OFF);
@@ -262,23 +278,11 @@ struct MANGOS_DLL_DECL boss_telestraAI : public ScriptedAI
 
         DoMeleeAttackIfReady();    
     }
-
-    void JustDied(Unit* killer)
-    {
-        DoScriptText(SAY_DEATH, m_creature);
-        if (pInstance)
-            pInstance->SetData(DATA_MAGUS_TELESTRA_EVENT, DONE);
-    }
-
-    void KilledUnit(Unit *victim)
-    {
-        DoScriptText(SAY_KILL, m_creature);
-    }
 };
 
-CreatureAI* GetAI_boss_telestra(Creature *_Creature)
+CreatureAI* GetAI_boss_telestra(Creature *pCreature)
 {
-    return new boss_telestraAI (_Creature);
+    return new boss_telestraAI (pCreature);
 }
 
 void AddSC_boss_telestra()

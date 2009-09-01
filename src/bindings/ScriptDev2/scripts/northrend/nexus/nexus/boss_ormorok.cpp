@@ -54,11 +54,11 @@ enum
 
 struct MANGOS_DLL_DECL boss_ormorokAI : public ScriptedAI
 {
-    boss_ormorokAI(Creature *c) : ScriptedAI(c) 
+    boss_ormorokAI(Creature* pCreature) : ScriptedAI(pCreature) 
     {
-        pInstance = ((ScriptedInstance*)c->GetInstanceData());
+        pInstance = ((ScriptedInstance*)pCreature->GetInstanceData());
+        HeroicMode = pCreature->GetMap()->IsHeroic();
         Reset();
-        HeroicMode = c->GetMap()->IsHeroic();
     }
 
     ScriptedInstance* pInstance;
@@ -79,24 +79,41 @@ struct MANGOS_DLL_DECL boss_ormorokAI : public ScriptedAI
     uint32 SPELL_SPELL_REFLECTION_Timer;
     uint32 SPELL_SUMMON_CRYSTALLINE_TANGLER_Timer;
 
-    void Reset() 
+    void Reset()
     {
-        SPELL_CRYSTAL_SPIKES_Timer = 12000;                         
+        SPELL_CRYSTAL_SPIKES_Timer = 12000;
         SPELL_TRAMPLE_Timer = 10000;
         SPELL_SPELL_REFLECTION_Timer = 30000;
         SPELL_SUMMON_CRYSTALLINE_TANGLER_Timer = 17000;
         Frenzy = false;
         CrystalSpikes = false;
+
         if(pInstance)
             pInstance->SetData(DATA_ORMOROK_EVENT, NOT_STARTED);
     }
 
-    void Aggro(Unit* who) 
+    void Aggro(Unit* pWho) 
     {
         DoScriptText(SAY_AGGRO, m_creature);
+
+        if(pInstance)
+            pInstance->SetData(DATA_ORMOROK_EVENT, IN_PROGRESS);
     }
 
-    void UpdateAI(const uint32 diff) 
+    void JustDied(Unit* pKiller)
+    {
+        DoScriptText(SAY_DEATH, m_creature);
+
+        if (pInstance)
+            pInstance->SetData(DATA_ORMOROK_EVENT, DONE);
+    }
+
+    void KilledUnit(Unit* pVictim)
+    {
+        DoScriptText(SAY_KILL, m_creature);
+    }
+
+    void UpdateAI(const uint32 diff)
     {
         if (!m_creature->SelectHostilTarget() || !m_creature->getVictim())
             return;
@@ -194,26 +211,14 @@ struct MANGOS_DLL_DECL boss_ormorokAI : public ScriptedAI
         DoMeleeAttackIfReady();    
     }
 
-    void JustDied(Unit* killer)  
-    {
-        DoScriptText(SAY_DEATH, m_creature);
-        if (pInstance)
-            pInstance->SetData(DATA_ORMOROK_EVENT, DONE);
-    }
-
-    void KilledUnit(Unit *victim)
-    {
-        DoScriptText(SAY_KILL, m_creature);
-    }
-
 };
 
 struct MANGOS_DLL_DECL mob_crystal_spikeAI : public Scripted_NoMovementAI
 {
-    mob_crystal_spikeAI(Creature *c) : Scripted_NoMovementAI(c)
+    mob_crystal_spikeAI(Creature* pCreature) : Scripted_NoMovementAI(pCreature)
     {
+        HeroicMode = pCreature->GetMap()->IsHeroic();
         Reset();
-        HeroicMode = c->GetMap()->IsHeroic();
     }
 
     bool HeroicMode;
@@ -249,7 +254,7 @@ struct MANGOS_DLL_DECL mob_crystal_spikeAI : public Scripted_NoMovementAI
 
 struct MANGOS_DLL_DECL mob_crystalline_tanglerAI : public ScriptedAI
 {
-    mob_crystalline_tanglerAI(Creature *c) : ScriptedAI(c)
+    mob_crystalline_tanglerAI(Creature* pCreature) : ScriptedAI(pCreature)
     {
         Reset();
     }
@@ -275,19 +280,19 @@ struct MANGOS_DLL_DECL mob_crystalline_tanglerAI : public ScriptedAI
     } 
 }; 
 
-CreatureAI* GetAI_mob_crystal_spike(Creature *_Creature)
+CreatureAI* GetAI_mob_crystal_spike(Creature* pCreature)
 {
-    return new mob_crystal_spikeAI (_Creature);
+    return new mob_crystal_spikeAI (pCreature);
 }
 
-CreatureAI* GetAI_mob_crystalline_tangler(Creature *_Creature)
+CreatureAI* GetAI_mob_crystalline_tangler(Creature* pCreature)
 {
-    return new mob_crystalline_tanglerAI (_Creature);
+    return new mob_crystalline_tanglerAI (pCreature);
 }
 
-CreatureAI* GetAI_boss_ormorok(Creature *_Creature)
+CreatureAI* GetAI_boss_ormorok(Creature* pCreature)
 {
-    return new boss_ormorokAI (_Creature);
+    return new boss_ormorokAI (pCreature);
 }
 
 void AddSC_boss_ormorok()
@@ -296,7 +301,7 @@ void AddSC_boss_ormorok()
 
     newscript = new Script;
     newscript->Name="boss_ormorok";
-    newscript->GetAI = GetAI_boss_ormorok;
+    newscript->GetAI = &GetAI_boss_ormorok;
     newscript->RegisterSelf();
 
     newscript = new Script;

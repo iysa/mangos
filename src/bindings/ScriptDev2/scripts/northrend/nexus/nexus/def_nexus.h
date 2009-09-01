@@ -1,11 +1,19 @@
 #ifndef DEF_NEXUS_H
 #define DEF_NEXUS_H
 
-#define DATA_MAGUS_TELESTRA_EVENT    1
-#define DATA_ANOMALUS_EVENT          2
-#define DATA_ORMOROK_EVENT           3
-#define DATA_KERISTRASZA_FREED       4
+enum
+{
+    DATA_MAGUS_TELESTRA_EVENT   = 1,
+    DATA_ANOMALUS_EVENT         = 2,
+    DATA_ORMOROK_EVENT          = 3,
+    DATA_KERISTRASZA_EVENT      = 4,
 
-#define DATA_ANOMALUS                5
+    DATA_ANOMALUS               = 5,
+    DATA_KERISTRASZA            = 6,
+
+    ANOMALUS_CONTAINMET_SPHERE  = 7,
+    ORMOROKS_CONTAINMET_SPHERE  = 8,
+    TELESTRAS_CONTAINMET_SPHERE = 9
+};
 
 #endif
