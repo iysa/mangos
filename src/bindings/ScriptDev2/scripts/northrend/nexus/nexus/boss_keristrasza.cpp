@@ -70,10 +70,10 @@ struct MANGOS_DLL_DECL boss_keristraszaAI : public ScriptedAI
         m_creature->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_STUNNED);
         if (pInstance && pInstance->GetData(DATA_KERISTRASZA_FREED) == DONE)
         {
-            m_creature->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_UNK_8);
+            m_creature->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_OOC_NOT_ATTACKABLE);
             m_creature->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
         }else{
-            m_creature->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_UNK_8);
+            m_creature->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_OOC_NOT_ATTACKABLE);
             m_creature->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
             m_creature->CastSpell(m_creature, SPELL_FROZEN_PRISON, false);
         }
@@ -90,7 +90,7 @@ struct MANGOS_DLL_DECL boss_keristraszaAI : public ScriptedAI
         if (pInstance && pInstance->GetData(DATA_KERISTRASZA_FREED) == DONE)
         {
             m_creature->RemoveAurasDueToSpell(SPELL_FROZEN_PRISON);
-            m_creature->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_UNK_8);
+            m_creature->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_OOC_NOT_ATTACKABLE);
             m_creature->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
             ScriptedAI::MoveInLineOfSight(who);
         }
