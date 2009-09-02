@@ -421,6 +421,7 @@ UPDATE creature_template SET ScriptName='mobs_risen_husk_spirit' WHERE entry IN 
 UPDATE creature_template SET ScriptName='npc_deserter_agitator' WHERE entry=23602;
 UPDATE creature_template SET ScriptName='npc_lady_jaina_proudmoore' WHERE entry=4968;
 UPDATE creature_template SET ScriptName='npc_ogron' WHERE entry=4983;
+UPDATE creature_template SET ScriptName='npc_morokk' WHERE entry=4500;
 UPDATE creature_template SET ScriptName='npc_nat_pagle' WHERE entry=12919;
 UPDATE creature_template SET ScriptName='npc_cassa_crimsonwing' WHERE entry=23704;
 UPDATE creature_template SET ScriptName='npc_restless_apparition' WHERE entry=23861;
@@ -523,6 +524,7 @@ UPDATE creature_template SET ScriptName='mob_hellfire_channeler' WHERE entry=172
 UPDATE creature_template SET ScriptName='boss_doomlord_kazzak' WHERE entry=18728;
 UPDATE creature_template SET ScriptName='npc_aeranas' WHERE entry=17085;
 UPDATE gameobject_template SET ScriptName='go_haaleshi_altar' WHERE entry=181606;
+UPDATE creature_template SET ScriptName='npc_ancestral_wolf' WHERE entry=17077;
 UPDATE creature_template SET ScriptName='npc_demoniac_scryer' WHERE entry=22258;
 UPDATE creature_template SET ScriptName='npc_gryphoneer_windbellow' WHERE entry=20235;
 UPDATE creature_template SET ScriptName='npc_naladu' WHERE entry=19361;
