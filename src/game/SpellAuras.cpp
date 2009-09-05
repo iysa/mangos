@@ -1386,7 +1386,7 @@ void Aura::HandleAddModifier(bool apply, bool Real)
             if(Creature* totem = m_target->GetMap()->GetCreature(m_target->m_TotemSlot[i]))
                 ReapplyAffectedPassiveAuras(totem);
 
-    if(m_spellProto->SpellFamilyName==SPELLFAMILY_DRUID && (m_spellmod->mask2 & UI64LIT(0x20000)))
+    if(m_spellProto->SpellFamilyName == SPELLFAMILY_DRUID && (m_spellmod->mask2 & UI64LIT(0x20000)))
     {
         m_target->RemoveAurasDueToSpell(66530);
 
@@ -1395,7 +1395,7 @@ void Aura::HandleAddModifier(bool apply, bool Real)
             m_target->CastSpell(m_target,66530,true);
     }
     // reapply auras when Aura Mastery casted
-    else if(m_spellProto->SpellFamilyName==SPELLFAMILY_PALADIN && (spellFamilyMask == UI64LIT(0x4000000)))
+    else if(m_spellProto->SpellFamilyName == SPELLFAMILY_PALADIN && (m_spellmod->mask == UI64LIT(0x4000000)))
     {
         uint32 activeAuraId = 0;
         Unit::AuraMap auras = m_target->GetAuras();
