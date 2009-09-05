@@ -12931,6 +12931,10 @@ void Player::RewardQuest( Quest const *pQuest, uint32 reward, Object* questGiver
             DestroyItemCount( pQuest->ReqItemId[i], pQuest->ReqItemCount[i], true);
     }
 
+    if(BattleGround* bg = GetBattleGround())
+        if(bg->GetTypeID() == BATTLEGROUND_AV)
+            ((BattleGroundAV*)bg)->HandleQuestComplete(pQuest->GetQuestId(), this);
+
     //if( qInfo->HasSpecialFlag( QUEST_FLAGS_TIMED ) )
     //    SetTimedQuest( 0 );
     m_timedquests.erase(pQuest->GetQuestId());
