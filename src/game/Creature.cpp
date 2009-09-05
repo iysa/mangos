@@ -156,7 +156,7 @@ void Creature::RemoveFromWorld()
 
 void Creature::RemoveCorpse()
 {
-    if( (getDeathState()!=CORPSE && getDeathState()!=GHOULED) && !m_isDeadByDefault || getDeathState()!=ALIVE && m_isDeadByDefault )
+    if (((getDeathState() != CORPSE && getDeathState()!=GHOULED) && !m_isDeadByDefault) || (getDeathState() != ALIVE && m_isDeadByDefault))
         return;
 
     m_deathTimer = 0;
@@ -1476,8 +1476,8 @@ float Creature::GetAttackDistance(Unit const* pl) const
     if(aggroRate==0)
         return 0.0f;
 
-    int32 playerlevel   = pl->getLevelForTarget(this);
-    int32 creaturelevel = getLevelForTarget(pl);
+    uint32 playerlevel   = pl->getLevelForTarget(this);
+    uint32 creaturelevel = getLevelForTarget(pl);
 
     int32 leveldif       = playerlevel - creaturelevel;
 
@@ -1748,7 +1748,7 @@ bool Creature::IsVisibleInGridForPlayer(Player* pl) const
     {
         if(GetCreatureInfo()->flags_extra & CREATURE_FLAG_EXTRA_INVISIBLE)
             return false;
-        return isAlive() || m_deathTimer > 0 || m_isDeadByDefault && m_deathState==CORPSE;
+        return (isAlive() || m_deathTimer > 0 || (m_isDeadByDefault && m_deathState == CORPSE));
     }
 
     // Dead player see live creatures near own corpse
