@@ -502,8 +502,7 @@ bool IsPositiveEffect(uint32 spellId, uint32 effIndex)
                         return false;
                     break;
                 case SPELL_AURA_MOD_PACIFY_SILENCE:
-                    // part of positive spell if casted at self
-                    if(spellproto->Id == 24740 || spellproto->EffectImplicitTargetA[effIndex] == TARGET_SELF)             // Wisp Costume
+                    if(spellproto->Id == 24740)             // Wisp Costume
                         return true;
                     return false;
                 case SPELL_AURA_MOD_ROOT:
