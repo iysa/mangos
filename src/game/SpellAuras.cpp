@@ -2555,6 +2555,24 @@ void Aura::HandleAuraDummy(bool apply, bool Real)
                     caster->CastSpell(m_target,m_modifier.m_amount,true);
                 return;
             }
+            // Borrowed Time
+            if( m_spellProto->SpellIconID == 2899 && m_target->GetTypeId()==TYPEID_PLAYER )
+            {
+                if(apply)
+                {
+                    // increase spell power scaling of Power Word: Shield
+                    SpellModifier *mod = new SpellModifier;
+                    mod->op = SPELLMOD_SPELL_BONUS_DAMAGE;
+                    mod->value = m_modifier.m_amount;
+                    mod->type = SPELLMOD_FLAT;
+                    mod->spellId = GetId();
+                    mod->mask = 0x1;
+                    mod->mask2= 0x0;
+                    m_spellmod = mod;
+                }
+                ((Player*)m_target)->AddSpellMod(m_spellmod, apply);
+                return;
+            }
             break;
         }
         case SPELLFAMILY_PRIEST:
@@ -6451,43 +6469,25 @@ void Aura::HandleSchoolAbsorb(bool apply, bool Real)
         // prevent double apply bonuses
         if (m_target->GetTypeId()!=TYPEID_PLAYER || !((Player*)m_target)->GetSession()->PlayerLoading())
         {
-            float DoneActualBenefit = 0.0f;
-            switch(m_spellProto->SpellFamilyName)
+            // Check for custom scaling, default is 0%
+            float CustomSpellPowerScaling = 0.0f;
+            float CustomAttackPowerScaling = 0.0f;
+            SpellBonusEntry const* bonus = spellmgr.GetSpellBonusData(m_spellProto->Id);
+            if (bonus)
             {
-                case SPELLFAMILY_PRIEST:
-                    // Power Word: Shield
-                    if (m_spellProto->SpellFamilyFlags & UI64LIT(0x0000000000000001))
-                        //+80.68% from +spell bonus
-                        DoneActualBenefit = caster->SpellBaseHealingBonus(GetSpellSchoolMask(m_spellProto)) * 0.8068f;
-                    break;
-                case SPELLFAMILY_MAGE:
-                    // Frost Ward, Fire Ward
-                    if (m_spellProto->SpellFamilyFlags & UI64LIT(0x0000000000000108))
-                        //+10% from +spell bonus
-                        DoneActualBenefit = caster->SpellBaseDamageBonus(GetSpellSchoolMask(m_spellProto)) * 0.1f;
-                    // Ice Barrier
-                    else if (m_spellProto->SpellFamilyFlags & UI64LIT(0x0000000100000000))
-                        //+80.67% from +spell bonus
-                        DoneActualBenefit = caster->SpellBaseDamageBonus(GetSpellSchoolMask(m_spellProto)) * 0.8067f;
-                    break;
-                case SPELLFAMILY_WARLOCK:
-                    // Shadow Ward
-                    if (m_spellProto->SpellFamilyFlags2 & 0x00000040)
-                        //+30% from +spell bonus
-                        DoneActualBenefit = caster->SpellBaseDamageBonus(GetSpellSchoolMask(m_spellProto)) * 0.30f;
-                    break;
-                case SPELLFAMILY_DRUID:
-                    // Savage Defense (amount store original percent of attack power applied)
-                    if (m_spellProto->SpellIconID == 50)    // only spell with this aura fit
-                        m_modifier.m_amount = int32(m_modifier.m_amount * m_target->GetTotalAttackPowerValue(BASE_ATTACK) / 100);
-                    break;
-                default:
-                    break;
+                CustomSpellPowerScaling = bonus->direct_damage * 100;
+                CustomAttackPowerScaling = bonus->ap_bonus;
             }
 
-            DoneActualBenefit *= caster->CalculateLevelPenalty(GetSpellProto());
+            //check for SpellMod Scaling
+            if( Player* modOwner = caster->GetSpellModOwner() )
+                modOwner->ApplySpellMod(m_spellProto->Id, SPELLMOD_SPELL_BONUS_DAMAGE, CustomSpellPowerScaling);
+            float LvlPenalty = caster->CalculateLevelPenalty(GetSpellProto());
 
-            m_modifier.m_amount += (int32)DoneActualBenefit;
+            int32 DoneActualBenefit = caster->SpellBaseDamageBonus(GetSpellSchoolMask(m_spellProto)) * CustomSpellPowerScaling / 100;
+            DoneActualBenefit += caster->GetTotalAttackPowerValue(BASE_ATTACK) * CustomAttackPowerScaling;
+            DoneActualBenefit *= LvlPenalty;
+            m_modifier.m_amount += DoneActualBenefit;
         }
     }
     else
