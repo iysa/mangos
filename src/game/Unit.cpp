@@ -9412,6 +9412,10 @@ bool Unit::IsImmunedToSpell(SpellEntry const* spellInfo)
     if (spellInfo->SpellFamilyName == SPELLFAMILY_PRIEST && spellInfo->SpellFamilyFlags == UI64LIT(0x8000000000))
         return false;
 
+    // Warrior's Shattering Throw can not be immuned
+    if (spellInfo->Id == 64382 || spellInfo->Id == 64380)
+        return false;
+
     SpellImmuneList const& dispelList = m_spellImmune[IMMUNITY_DISPEL];
     for(SpellImmuneList::const_iterator itr = dispelList.begin(); itr != dispelList.end(); ++itr)
         if(itr->type == spellInfo->Dispel)
