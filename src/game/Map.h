@@ -565,7 +565,7 @@ class MANGOS_DLL_SPEC InstanceMap : public Map
         void SetResetSchedule(bool on);
         uint32 GetMaxPlayers() const;
 
-        void InitVisibilityDistance();
+        virtual void InitVisibilityDistance();
     private:
         bool m_resetAfterUnload;
         bool m_unloadWhenEmpty;
@@ -585,7 +585,7 @@ class MANGOS_DLL_SPEC BattleGroundMap : public Map
         void SetUnload();
         void UnloadAll(bool pForce);
 
-        void InitVisibilityDistance();
+        virtual void InitVisibilityDistance();
         BattleGround* GetBG() { return m_bg; }
         void SetBG(BattleGround* bg) { m_bg = bg; }
     private:
