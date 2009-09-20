@@ -5539,17 +5539,6 @@ bool Unit::HandleDummyAuraProc(Unit *pVictim, uint32 damage, Aura* triggeredByAu
             }
             switch(dummySpell->Id)
             {
-                //Glyph of Power Word: Shield
-                case 55672:
-                {
-                    if(!pVictim)
-                        return true;
-                    if(Aura * aur=pVictim->GetAura(procSpell->Id, 0))
-                        basepoints0=(aur->GetModifier()->m_amount)*triggerAmount/100;
-                    triggered_spell_id=56160;
-                    break;
-                 }
-
                 // Vampiric Embrace
                 case 15286:
                 {
