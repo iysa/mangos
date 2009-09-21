@@ -5744,6 +5744,40 @@ void Spell::EffectScriptEffect(uint32 effIndex)
             }
             break;
         }
+        case SPELLFAMILY_DEATHKNIGHT:
+        {
+            switch(m_spellInfo->Id)
+            {
+                // Pestilence
+                case 50842:
+                {
+                    uint64 firstTargetGUID = m_UniqueTargetInfo.begin()->targetGUID;
+                    if (unitTarget->GetGUID() == firstTargetGUID)
+                        return;
+
+                    Unit* firstTarget = ObjectAccessor::GetUnit(*m_caster, firstTargetGUID);
+                    if (!firstTarget || !firstTarget->isAlive())
+                        return;
+
+                    Unit::AuraList auras = firstTarget->GetAurasByType(SPELL_AURA_PERIODIC_DAMAGE);
+                    for (Unit::AuraList::const_iterator iter = auras.begin(); iter != auras.end(); ++iter)
+                    {
+                        if ((*iter)->GetCasterGUID() != m_caster->GetGUID())
+                            continue;
+
+                        const SpellEntry* spellProto = (*iter)->GetSpellProto();
+                        if (!spellProto)
+                            continue;
+
+                        if (spellProto->SpellFamilyName == SPELLFAMILY_DEATHKNIGHT && spellProto->SpellFamilyFlags2 & UI64LIT(0x2))
+                            m_caster->CastSpell(unitTarget,(*iter)->GetId(),true);
+                    }
+
+                    return;
+                }
+            }
+            break;
+        }
         case SPELLFAMILY_POTION:
         {
             switch(m_spellInfo->Id)
