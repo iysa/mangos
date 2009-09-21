@@ -2367,6 +2367,12 @@ void Spell::SetTargetMap(uint32 effIndex,uint32 targetMode,UnitList& TagUnitMap)
             TagUnitMap.push_back(m_caster);
             break;
         }
+        case SPELLFAMILY_WARRIOR:
+        {
+            if(m_spellInfo->Id == 64382)
+                AddPrecastSpell(64380);
+            break;
+        }
         default:
             break;
     }
