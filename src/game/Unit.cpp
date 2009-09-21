@@ -8527,6 +8527,7 @@ uint32 Unit::SpellDamageBonus(Unit *pVictim, SpellEntry const *spellProto, uint3
     // Taken/Done total percent damage auras
     float DoneTotalMod = 1.0f;
     float TakenTotalMod = 1.0f;
+    int32 ImpurityMod = 0;
     int32 DoneTotal = 0;
     int32 TakenTotal = 0;
 
@@ -8687,6 +8688,18 @@ uint32 Unit::SpellDamageBonus(Unit *pVictim, SpellEntry const *spellProto, uint3
         }
     }
 
+    // Impurity hack
+    if (HasAura(49220))
+        ImpurityMod = 4;
+    if (HasAura(49633))
+        ImpurityMod = 8;
+    if (HasAura(49635))
+        ImpurityMod = 12;
+    if (HasAura(49636))
+        ImpurityMod = 16;
+    if (HasAura(49638))
+        ImpurityMod = 20;
+
     // Custom scripted damage
     switch(spellProto->SpellFamilyName)
     {
@@ -8818,7 +8831,11 @@ uint32 Unit::SpellDamageBonus(Unit *pVictim, SpellEntry const *spellProto, uint3
             coeff = bonus->direct_damage * LvlPenalty * stack;
 
         if (bonus->ap_bonus)
-            DoneTotal += int32(bonus->ap_bonus * GetTotalAttackPowerValue(BASE_ATTACK) * stack);
+        {
+            int32 scrap = 0;
+            scrap = GetTotalAttackPowerValue(BASE_ATTACK) / 100 * ImpurityMod;
+            DoneTotal += int32(bonus->ap_bonus * GetTotalAttackPowerValue(BASE_ATTACK) * stack) + scrap;
+        }
 
         DoneTotal  += int32(DoneAdvertisedBenefit * coeff * SpellModSpellDamage);
         TakenTotal += int32(TakenAdvertisedBenefit * coeff);
