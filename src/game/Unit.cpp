@@ -5243,15 +5243,6 @@ bool Unit::HandleDummyAuraProc(Unit *pVictim, uint32 damage, Aura* triggeredByAu
                     CastSpell(this, 28682, true, castItem, triggeredByAura);
                     return (procEx & PROC_EX_CRITICAL_HIT); // charge update only at crit hits, no hidden cooldowns
                 }
-                // Glyph of Ice Block
-                case 56372:
-                {
-                    if (this->GetTypeId() != TYPEID_PLAYER)
-                        return false;
-
-                    ((Player*)this)->RemoveSpellCategoryCooldown(35, true);
-                    return true;
-                }
                 // Shattered Barrier
                 case 44745:
                 case 54787:
