@@ -8695,12 +8695,7 @@ uint32 Unit::SpellDamageBonus(Unit *pVictim, SpellEntry const *spellProto, uint3
             if (spellProto->SpellIconID == 186)
             {
                 if (pVictim->isFrozen())
-                {
-                    if (owner->HasAura(56377) && (pVictim->getLevel() > owner->getLevel()))
-                        DoneTotalMod *= 4.0f;
-                    else
-                        DoneTotalMod *= 3.0f;
-                }
+                    DoneTotalMod *= 3.0f;
             }
             // Torment the weak affected (Arcane Barrage, Arcane Blast, Frostfire Bolt, Arcane Missiles, Fireball)
             if ((spellProto->SpellFamilyFlags & UI64LIT(0x0000900020200021)) && 
