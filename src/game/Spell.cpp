@@ -2367,12 +2367,6 @@ void Spell::SetTargetMap(uint32 effIndex,uint32 targetMode,UnitList& TagUnitMap)
             TagUnitMap.push_back(m_caster);
             break;
         }
-        case SPELLFAMILY_WARRIOR:
-        {
-            if(m_spellInfo->Id == 64382)
-                AddPrecastSpell(64380);
-            break;
-        }
         default:
             break;
     }
@@ -2662,6 +2656,12 @@ void Spell::cast(bool skipCheck)
                 AddPrecastSpell(58923); // Hit 3 targets at once with mangle in dire bear form
             if(m_spellInfo->Id == 16857 && (m_caster->m_form == FORM_BEAR || m_caster->m_form == FORM_DIREBEAR)) //Faerie Fire(Feral)
                 AddPrecastSpell(60089);
+            break;
+        }
+        case SPELLFAMILY_WARRIOR:
+        {
+            if(m_spellInfo->Id == 64382)
+                AddPrecastSpell(64380);
             break;
         }
         default:
