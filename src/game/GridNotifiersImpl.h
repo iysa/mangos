@@ -187,9 +187,6 @@ template<>
 inline void
 MaNGOS::DynamicObjectUpdater::Visit(CreatureMapType  &m)
 {
-    if(i_dynobject.GetRadius() == 0.0f)
-        return;
-
     for(CreatureMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         VisitHelper(itr->getSource());
 }
@@ -198,9 +195,6 @@ template<>
 inline void
 MaNGOS::DynamicObjectUpdater::Visit(PlayerMapType  &m)
 {
-    if(i_dynobject.GetRadius() == 0.0f)
-        return;
-
     for(PlayerMapType::iterator itr=m.begin(); itr != m.end(); ++itr)
         VisitHelper(itr->getSource());
 }
