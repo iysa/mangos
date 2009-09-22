@@ -5741,13 +5741,6 @@ void Spell::EffectScriptEffect(uint32 effIndex)
                     finish();
                     return;
                 }
-            }
-            break;
-        }
-        case SPELLFAMILY_DEATHKNIGHT:
-        {
-            switch(m_spellInfo->Id)
-            {
                 // Pestilence
                 case 50842:
                 {
@@ -5772,7 +5765,6 @@ void Spell::EffectScriptEffect(uint32 effIndex)
                         if (spellProto->SpellFamilyName == SPELLFAMILY_DEATHKNIGHT && spellProto->SpellFamilyFlags2 & UI64LIT(0x2))
                             m_caster->CastSpell(unitTarget,(*iter)->GetId(),true);
                     }
-
                     return;
                 }
             }
