@@ -342,7 +342,7 @@ pAuraHandler AuraHandler[TOTAL_AURAS]=
     &Aura::HandleNoImmediateEffect,                         //287 SPELL_AURA_DEFLECT_SPELLS             implemented in Unit::MagicSpellHitResult and Unit::MeleeSpellHitResult
     &Aura::HandleUnused,                                    //288 not used by any spells (3.09) except 1 test spell.
     &Aura::HandleUnused,                                    //289 unused
-    &Aura::HandleAuraModAllCritChance,                      //290 SPELL_AURA_MOD_ALL_CRIT_CHANCE
+    &Aura::HandleUnused,                                    //290 unused
     &Aura::HandleUnused,                                    //291 unused
     &Aura::HandleNULL,                                      //292 call stabled pet
     &Aura::HandleNULL,                                      //293 2 test spells
@@ -7899,12 +7899,6 @@ void Aura::HandleAllowOnlyAbility(bool apply, bool Real)
     m_target->UpdateDamagePhysical(BASE_ATTACK);
     m_target->UpdateDamagePhysical(RANGED_ATTACK);
     m_target->UpdateDamagePhysical(OFF_ATTACK);
-}
-
-void Aura::HandleAuraModAllCritChance(bool apply, bool Real)
-{
-    this->HandleAuraModCritPercent(apply, Real);
-    this->HandleModSpellCritChance(apply, Real);
 }
 
 void Aura::UnregisterSingleCastAura()
