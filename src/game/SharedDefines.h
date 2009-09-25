@@ -1043,8 +1043,6 @@ enum Targets
     TARGET_SCRIPT_COORDINATES          = 46,
     TARGET_DYNAMIC_OBJECT              = 47,
     TARGET_SUMMON                      = 48,
-     TARGET_DEST_CASTER_RIGHT           = 49,
-     TARGET_DEST_CASTER_LEFT            = 50,
     TARGET_AREAEFFECT_CUSTOM_2         = 52,
     TARGET_CURRENT_ENEMY_COORDINATES   = 53,                // set unit coordinates as dest, only 16 target B imlemented
     TARGET_ALL_RAID_AROUND_CASTER      = 56,
