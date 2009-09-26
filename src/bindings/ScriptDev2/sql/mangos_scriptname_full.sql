@@ -1006,7 +1006,9 @@ UPDATE creature_template SET ScriptName='mob_spark_of_ionar' WHERE entry=28926;
 UPDATE creature_template SET ScriptName='boss_loken' WHERE entry=28923;
 
 /* HALLS OF STONE */
-
+UPDATE creature_template SET ScriptName='boss_maiden_of_grief' WHERE entry=27975;
+UPDATE creature_template SET ScriptName='boss_sjonnir' WHERE entry=27978;
+UPDATE creature_template SET ScriptName='npc_brann_hos' WHERE entry=28070;
 
 /* ULDUAR */
 UPDATE instance_template SET script='instance_ulduar' WHERE map=603;
@@ -1031,6 +1033,7 @@ UPDATE creature_template SET ScriptName='boss_skarvald' WHERE entry=24200;
 UPDATE creature_template SET ScriptName='boss_dalronn' WHERE entry=24201;
 UPDATE creature_template SET ScriptName='boss_ingvar' WHERE entry=23954;
 UPDATE creature_template SET ScriptName='boss_keleseth' WHERE entry=23953;
+UPDATE creature_template SET ScriptName='mob_vrykul_skeleton' WHERE entry=23970;
 
 /* UTGARDE PINNACLE */
 UPDATE creature_template SET ScriptName='boss_gortok' WHERE entry=26687;
