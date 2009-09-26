@@ -359,6 +359,7 @@ void Spell::EffectSchoolDMG(uint32 effect_idx)
                     }
                     // Cataclysmic Bolt
                     case 38441:
+                    {
                         damage = unitTarget->GetMaxHealth() / 2;
                         break;
                     // Explode
@@ -370,6 +371,13 @@ void Spell::EffectSchoolDMG(uint32 effect_idx)
                             // After explode the ghoul must be killed
                             unitTarget->DealDamage(unitTarget, unitTarget->GetMaxHealth(), NULL, DIRECT_DAMAGE, SPELL_SCHOOL_MASK_NORMAL, NULL, false);
                         }
+                        break;
+                    }
+                    }
+                    // Tympanic Tantrum
+                    case 62775:
+                    {
+                        damage = unitTarget->GetMaxHealth() / 10;
                         break;
                     }
                 }
