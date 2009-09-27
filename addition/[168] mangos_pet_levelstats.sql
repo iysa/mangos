@@ -1,5 +1,5 @@
 DELETE FROM `pet_levelstats` WHERE `creature_entry` = 26125;
-INSERT INTO `pet_levelstats`  VALUES
+INSERT INTO `pet_levelstats` VALUES
 (26125,1,48,80,10,20,16,13,20,8),
 (26125,2,105,106,67,22,17,14,21,9),
 (26125,3,162,132,124,24,18,15,22,10),

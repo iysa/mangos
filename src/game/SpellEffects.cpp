@@ -2033,27 +2033,25 @@ void Spell::EffectDummy(uint32 i)
                 if (m_caster->HasAura(60200))
                     allow_cast = true;
                 else
-                {
                     // We need Corpse Dust to cast a spell.
                     if (((Player*)m_caster)->HasItemCount(37201,1))
                     {
                         ((Player*)m_caster)->DestroyItemCount(37201,1,true);
                         allow_cast = true;
                     }
-                    if (allow_cast)
-                    {
-                        if (m_caster->HasSpell(52143))
-                            m_caster->CastSpell(m_caster,52150,true);
-                        else
-                            m_caster->CastSpell(m_caster,46585,true);
-                    }
+                if (allow_cast)
+                {
+                    if (m_caster->HasSpell(52143))
+                        m_caster->CastSpell(m_caster,52150,true);
                     else
-                    {
-                        ((Player*)m_caster)->RemoveSpellCooldown(m_spellInfo->Id,true);
-                        SendCastResult(SPELL_FAILED_CANT_DO_THAT_RIGHT_NOW);
-                    }
-                    return;
+                        m_caster->CastSpell(m_caster,46585,true);
                 }
+                else
+                {
+                    ((Player*)m_caster)->RemoveSpellCooldown(m_spellInfo->Id,true);
+                    SendCastResult(SPELL_FAILED_CANT_DO_THAT_RIGHT_NOW);
+                }
+                return;
             }
             // Death Coil
             if (m_spellInfo->SpellFamilyFlags & UI64LIT(0x002000))
