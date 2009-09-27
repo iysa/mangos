@@ -75,6 +75,7 @@ UPDATE creature_template SET ScriptName='npc_dancing_flames' WHERE entry=25305;
 UPDATE creature_template SET ScriptName='npc_garments_of_quests' WHERE entry IN (12429,12423,12427,12430,12428);
 UPDATE creature_template SET ScriptName='npc_guardian' WHERE entry=5764;
 UPDATE creature_template SET ScriptName='npc_kingdom_of_dalaran_quests' WHERE entry IN (29169,23729,26673,27158,29158,29161,26471,29155,29159,29160,29162);
+UPDATE creature_template SET ScriptName='npc_lunaclaw_spirit' WHERE entry=12144;
 UPDATE creature_template SET ScriptName='npc_mount_vendor' WHERE entry IN (384,1261,1460,2357,3362,3685,4730,4731,4885,7952,7955,16264,17584);
 UPDATE creature_template SET ScriptName='npc_doctor' WHERE entry IN (12939,12920);
 UPDATE creature_template SET ScriptName='npc_injured_patient' WHERE entry IN (12936,12937,12938,12923,12924,12925);
@@ -140,7 +141,11 @@ UPDATE creature_template SET ScriptName='boss_ambassador_hellmaw' WHERE entry=18
 /*  */
 
 /* AHN'KAHET */
-
+UPDATE creature_template SET ScriptName='boss_jedoga' WHERE entry=29310;
+UPDATE creature_template SET ScriptName='boss_nadox' WHERE entry=29309;
+UPDATE creature_template SET ScriptName='boss_taldaram' WHERE entry=29308;
+UPDATE gameobject_template SET ScriptName='go_nerubian_device' WHERE entry IN (193093,193094);
+UPDATE creature_template SET ScriptName='boss_volazj' WHERE entry=29311;
 
 /* AZJOL-NERUB */
 UPDATE creature_template SET ScriptName='boss_anubarak' WHERE entry=29120;
