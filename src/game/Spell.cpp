@@ -1416,6 +1416,7 @@ void Spell::SetTargetMap(uint32 effIndex,uint32 targetMode,UnitList& TagUnitMap)
     switch(targetMode)
     {
         case TARGET_RANDOM_NEARBY_LOC:
+        case TARGET_RANDOM_NEARBY_LOC_LR:
         {
             float dest_x = m_caster->GetPositionX() + irand(-radius, radius);
             float dest_y = m_caster->GetPositionY() + irand(-radius, radius);
@@ -2403,7 +2404,7 @@ void Spell::SetTargetMap(uint32 effIndex,uint32 targetMode,UnitList& TagUnitMap)
             break;
         }
         default:
-            sLog.outError( "SPELL: Unknown implicit target (%u) for spell ID %u", targetMode, m_spellInfo->Id );
+            //sLog.outError( "SPELL: Unknown implicit target (%u) for spell ID %u", targetMode, m_spellInfo->Id );
             break;
     }
 
