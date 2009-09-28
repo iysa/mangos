@@ -498,6 +498,8 @@ UPDATE creature_template SET ScriptName='boss_colossus' WHERE entry=29307;
 UPDATE creature_template SET ScriptName='boss_galdarah' WHERE entry=29306;
 UPDATE creature_template SET ScriptName='boss_moorabi' WHERE entry=29305;
 UPDATE creature_template SET ScriptName='boss_sladran' WHERE entry=29304;
+UPDATE gameobject_template SET ScriptName='go_gundrak_altar' WHERE entry IN (192518, 192519, 192520);
+UPDATE instance_template SET script='instance_gundrak' WHERE map=604;
 
 /*  */
 /* HELLFIRE CITADEL */
@@ -841,6 +843,7 @@ UPDATE creature_template SET ScriptName='npc_braug_dimspirit' WHERE entry=4489;
 UPDATE creature_template SET ScriptName='npc_kaya' WHERE entry=11856;
 
 /* STORM PEAKS */
+UPDATE creature_template SET ScriptName='npc_loklira_the_crone' WHERE entry=29975;
 UPDATE creature_template SET ScriptName='npc_roxi_ramrocket' WHERE entry=31247;
 
 /* STORMWIND CITY */
