@@ -3328,7 +3328,7 @@ void Spell::EffectOpenLock(uint32 effIndex)
             if (BattleGround *bg = player->GetBattleGround())
             {
                 // check if it's correct bg
-                if(bg->GetTypeID() == BATTLEGROUND_AB || bg->GetTypeID() == BATTLEGROUND_AV)
+                if(bg && bg->GetTypeID() == BATTLEGROUND_AB)
                     bg->EventPlayerClickedOnFlag(player, gameObjTarget);
                 return;
             }

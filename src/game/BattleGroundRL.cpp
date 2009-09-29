@@ -57,16 +57,16 @@ void BattleGroundRL::Update(uint32 diff)
 void BattleGroundRL::StartingEventCloseDoors()
 {
     for(uint32 i = BG_RL_OBJECT_DOOR_1; i <= BG_RL_OBJECT_DOOR_2; ++i)
-        SpawnBGObject(m_BgObjects[i], RESPAWN_IMMEDIATELY);
+        SpawnBGObject(i, RESPAWN_IMMEDIATELY);
 }
 
 void BattleGroundRL::StartingEventOpenDoors()
 {
     for(uint32 i = BG_RL_OBJECT_DOOR_1; i <= BG_RL_OBJECT_DOOR_2; ++i)
-        DoorOpen(m_BgObjects[i]);
+        DoorOpen(i);
 
     for(uint32 i = BG_RL_OBJECT_BUFF_1; i <= BG_RL_OBJECT_BUFF_2; ++i)
-        SpawnBGObject(m_BgObjects[i], 60);
+        SpawnBGObject(i, 60);
 }
 
 void BattleGroundRL::AddPlayer(Player *plr)

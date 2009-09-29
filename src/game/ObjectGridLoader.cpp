@@ -129,8 +129,7 @@ void LoadHelper(CellGuidSet const& guid_set, CellPair &cell, GridRefManager<T> &
             map->AddToActive(obj);
 
         ++count;
-        if(map->IsBattleGround() && ((BattleGroundMap*)map)->GetBG())
-            ((BattleGroundMap*)map)->GetBG()->OnObjectDBLoad(obj);
+
     }
 }
 
