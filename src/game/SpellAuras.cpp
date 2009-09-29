@@ -1014,7 +1014,7 @@ void Aura::_AddAura()
     }
 
     // Test hack of set slot and aura update of Warbringer and Juggernaut 
-    if (IsNeedVisibleSlot(caster) || ((m_spellProto->Id == 57499 || m_spellProto->Id == 64976) && m_spellProto->EffectApplyAuraName[GetEffIndex()] == SPELL_AURA_262)
+    if (IsNeedVisibleSlot(caster) || ((m_spellProto->Id == 57499 || m_spellProto->Id == 64976) && m_spellProto->EffectApplyAuraName[GetEffIndex()] == SPELL_AURA_262))
     {
         SetAuraSlot( slot );
         if(slot < MAX_AURAS)                        // slot found send data to client
