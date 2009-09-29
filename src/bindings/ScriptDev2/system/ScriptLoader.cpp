@@ -4,6 +4,9 @@
 
 #include "precompiled.h"
 
+//battlegrounds
+extern void AddSC_battleground();
+
 //custom
 extern void AddSC_npc_arena_honor();
 extern void AddSC_teleguy();
@@ -390,6 +393,9 @@ extern void AddSC_zangarmarsh();
 
 void AddScripts()
 {
+    //battlegrounds
+    AddSC_battleground();
+
     //custom
     AddSC_npc_arena_honor();
 	AddSC_teleguy();
