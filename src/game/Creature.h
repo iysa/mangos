@@ -685,6 +685,8 @@ class MANGOS_DLL_SPEC Creature : public Unit
         bool isActiveObject() const { return m_isActiveObject || HasAuraType(SPELL_AURA_BIND_SIGHT) || HasAuraType(SPELL_AURA_FAR_SIGHT); }
         void SetActiveObjectState(bool on);
 
+        void SendAreaSpiritHealerQueryOpcode(Player *pl);
+
          void IncrementReceivedDamage(Unit* pAttacker, uint32 unDamage)
          {
              if(!pAttacker || !unDamage)
