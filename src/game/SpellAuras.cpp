@@ -4220,7 +4220,7 @@ void Aura::HandleInvisibilityDetect(bool apply, bool Real)
             m_target->m_detectInvisibilityMask |= (1 << m_modifier.m_miscvalue);
     }
     if(Real && m_target->GetTypeId()==TYPEID_PLAYER)
-        ObjectAccessor::UpdateVisibilityForPlayer((Player*)m_target);
+        ((Player*)m_target)->UpdateVisibilityForPlayer();
 }
 
 void Aura::HandleAuraModRoot(bool apply, bool Real)
@@ -7526,8 +7526,12 @@ void Aura::PeriodicDummyTick()
         {
             switch (spell->Id)
             {
+                // Killing Spree
                 case 51690:
                 {
+                    if (caster->hasUnitState(UNIT_STAT_STUNNED) || caster->HasAuraType(SPELL_AURA_MOD_FEAR))
+                        return;
+
                     std::list<Unit*> targets;
                     {
                         // eff_radius ==0
@@ -7560,14 +7564,28 @@ void Aura::PeriodicDummyTick()
                     caster->CastSpell(target, 57841, true);
                     return;
                 }
+
                 // Master of Subtlety
 //                case 31666: break;
-                // Killing Spree
-//                case 51690: break;
                 // Overkill
 //                case 58428: break;
 //                default:
 //                    break;
+            }
+            // Prey on the Weak
+            if (spell->SpellIconID == 2983)
+            {
+                Unit *target=caster->getVictim();
+                if (target && (caster->GetHealth() * 100 / caster->GetMaxHealth() > target->GetHealth() * 100 / target->GetMaxHealth()))
+                {
+                    if(!caster->HasAura(58670))
+                    {
+                        int32 basepoints = GetBasePoints();
+                        caster->CastCustomSpell(caster, 58670, &basepoints, 0, 0, true);
+                    }
+                }
+                else
+                    caster->RemoveAurasDueToSpell(58670);
             }
             break;
         }
