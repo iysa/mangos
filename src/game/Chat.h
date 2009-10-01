@@ -500,7 +500,6 @@ class ChatHandler
         bool HandleJailReloadCommand(const char* args);
 
         //! Development Commands
-        bool HandleSet32Bit(const char* args);
         bool HandleSaveAllCommand(const char* args);
 
         Player*   getSelectedPlayer();
